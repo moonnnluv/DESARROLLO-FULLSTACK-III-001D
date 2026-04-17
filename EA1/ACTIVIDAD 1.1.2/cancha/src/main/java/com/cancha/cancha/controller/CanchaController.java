@@ -1,25 +1,37 @@
 package com.cancha.cancha.controller;
 
-import com.cancha.cancha.entity.Cancha;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cancha.cancha.entity.Cancha;
+import com.cancha.cancha.services.CanchaServices;
+
 @RestController
-@RequestMapping("/canchas")
+@RequestMapping("/api/canchas")
 public class CanchaController {
 
-    private List<Cancha> listaCanchas = new ArrayList<>();
+    @Autowired
+    private CanchaServices canchaService;
 
     @GetMapping
-    public List<Cancha> obtenerCanchas() {
-        return listaCanchas;
+    public List<Cancha> listarCanchas() {
+        return canchaService.listarCanchas();
     }
 
     @PostMapping
-    public Cancha agregarCancha(@RequestBody Cancha nuevaCancha) {
-        listaCanchas.add(nuevaCancha);
-        return nuevaCancha; 
+    public Cancha crearCancha(@RequestBody Cancha cancha) {
+        return canchaService.crearCancha(cancha);
+    }
+
+    @GetMapping("/{id}")
+    public Cancha buscarCancha(@PathVariable Long id) {
+        return canchaService.buscarCancha(id);
     }
 }

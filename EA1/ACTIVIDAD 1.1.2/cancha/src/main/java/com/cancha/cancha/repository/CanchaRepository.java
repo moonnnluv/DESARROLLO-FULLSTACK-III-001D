@@ -1,5 +1,8 @@
 package com.cancha.cancha.repository;
 
-public class CanchaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.cancha.cancha.entity.Cancha;
+
+public interface CanchaRepository extends JpaRepository<Cancha, Long> {
 }

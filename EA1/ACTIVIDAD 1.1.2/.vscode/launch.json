@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CanchaApplication<cancha>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.cancha.cancha.CanchaApplication",
+            "projectName": "cancha",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ReservasApplication<reservas>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.reservas.reservas.ReservasApplication",
+            "projectName": "reservas",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
