@@ -2,7 +2,7 @@ package com.reservas.reservas.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import com.reservas.reservas.entity.Reserva;
 import com.reservas.reservas.entity.dto.Cancha;
 import com.reservas.reservas.repository.ReservaRepository;
@@ -15,7 +15,7 @@ public class ReservaServicesImpl implements ReservaServices {
     private ReservaRepository reservaRepository;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private WebClient webClient;
 
     @Override
     public List<Reserva> listarReservas() {
@@ -24,8 +24,11 @@ public class ReservaServicesImpl implements ReservaServices {
 
     @Override
     public Reserva crearReserva(Reserva reserva) {
-        String url = "http://localhost:8081/api/canchas/" + reserva.getCanchaId();
-        Cancha cancha = restTemplate.getForObject(url, Cancha.class);
+        Cancha cancha = webClient.get()
+                .uri("/api/canchas/" + reserva.getCanchaId())
+                .retrieve()
+                .bodyToMono(Cancha.class)
+                .block();
 
         if (cancha == null) {
             throw new RuntimeException("La cancha no existe");
