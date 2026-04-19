@@ -1,7 +1,7 @@
 services:
 
   apigateway:
-    build: ./apigateway
+    image: moonnnluv/apigateway:v1
     ports:
       - "9090:9090"
     depends_on:
@@ -13,7 +13,7 @@ services:
       - spring-net
 
   serviciocanchas:
-    build: ./cancha
+    image: moonnnluv/serviciocanchas:v1
     ports:
       - "8081:8081"
     environment:
@@ -27,7 +27,7 @@ services:
       - spring-net
 
   servicioreservas:
-    build: ./reservas
+    image: moonnnluv/servicioreservas:v1
     ports:
       - "8082:8082"
     environment:
