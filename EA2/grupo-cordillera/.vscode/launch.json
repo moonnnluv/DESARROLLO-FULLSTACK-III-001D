@@ -9,6 +9,16 @@
             "projectName": "msdatos",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MskpiApplication<mskpi>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.grupcordillera.mskpi.MskpiApplication",
+            "projectName": "mskpi",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
